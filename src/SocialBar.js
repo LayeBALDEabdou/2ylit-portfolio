@@ -15,15 +15,15 @@ function SocialBar() {
       </button>
 
       <div className={`flex flex-col items-center gap-3 transition-all duration-300 overflow-hidden ${open ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
-        <a href="https://github.com/tonprofil" target="_blank" rel="noreferrer"
+        <a href="https://github.com/LayeBALDEabdou/" target="_blank" rel="noreferrer"
           className="bg-black text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300">
           <FaGithub size={18} />
         </a>
-        <a href="https://linkedin.com/in/tonprofil" target="_blank" rel="noreferrer"
+        <a href="https://www.linkedin.com/in/abdoulaye-balde-708a75377/" target="_blank" rel="noreferrer"
           className="bg-black text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300">
           <FaLinkedin size={18} />
         </a>
-        <a href="https://instagram.com/tonprofil" target="_blank" rel="noreferrer"
+        <a href="https://www.instagram.com/2ylite__/" target="_blank" rel="noreferrer"
           className="bg-black text-white p-3 rounded-full shadow-lg hover:bg-pink-600 transition-all duration-300">
           <FaInstagram size={18} />
         </a>
