@@ -1,14 +1,13 @@
+import Home from "./home";
 import Navbar from "./Navbar";
 import SocialBar from "./SocialBar";
 
 function App() {
   return (
-    <div className="pt-24">
+    <div>
       <Navbar/>
       <SocialBar/>
-      <section id="home" className="h-screen flex items-center justify-center">
-        <h1>Bienvenue sur mon portfolio</h1>
-      </section>
+      <Home/>
 
       <section id="about" className="h-screen flex items-center justify-center">
         <h1>A propos de moi</h1>
