@@ -28,12 +28,11 @@ function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent" />
 
         <div className="relative z-10 h-full flex items-center px-20">
-          <div className="text-white">
+          <div className="text-white border-l-4 border-white pl-6">
             <h1 className="text-8xl font-extrabold tracking-widest uppercase">
               Abdoulaye <br /> Balde
             </h1>
 
-            {/* Texte animé */}
             <AnimatePresence mode="wait">
               <motion.p
                 key={index}
@@ -41,16 +40,20 @@ function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.5 }}
-                className="text-xl tracking-widest uppercase mt-4"
+                className="text-2xl tracking-widest uppercase mt-4"
               >
                 {textes[index]}
               </motion.p>
             </AnimatePresence>
           </div>
-          <a  href='/cv.pdf'  target="_blank"
+
+          <a
+            href="/cv.pdf"
+            target="_blank"
             rel="noreferrer"
-            className="absolute bottom-6 right-10 border-b-2 border-white text-white text-sm tracking-widest uppercase hover:opacity-70 transition-all duration-300">
-            Voir mon cv
+            className="absolute bottom-6 right-10 border-b-2 border-white text-white text-sm tracking-widest uppercase hover:opacity-70 transition-all duration-300"
+          >
+            Voir mon CV →
           </a>
         </div>
 

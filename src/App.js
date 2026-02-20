@@ -1,3 +1,4 @@
+import About from "./About";
 import Home from "./home";
 import Navbar from "./Navbar";
 import SocialBar from "./SocialBar";
@@ -9,9 +10,7 @@ function App() {
       <SocialBar/>
       <Home/>
 
-      <section id="about" className="h-screen flex items-center justify-center">
-        <h1>A propos de moi</h1>
-      </section>
+      <About/>
 
       <section id="projects" className="h-screen flex items-center justify-center">
         <h1>Mes projets</h1>
