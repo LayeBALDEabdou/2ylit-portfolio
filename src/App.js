@@ -1,4 +1,5 @@
 import About from "./About";
+import Contact from "./Contact";
 import Home from "./home";
 import Navbar from "./Navbar";
 import Projects from "./Projects";
@@ -10,17 +11,9 @@ function App() {
       <Navbar/>
       <SocialBar/>
       <Home/>
-
       <About/>
-
       <Projects/>
-
-      <section id="contact" className="h-screen flex items-center justify-center">
-        <h1>Contactez moi</h1>
-
-      </section>
-
-      
+      <Contact/>
     </div>
   );
 }
