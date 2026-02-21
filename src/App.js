@@ -1,6 +1,7 @@
 import About from "./About";
 import Home from "./home";
 import Navbar from "./Navbar";
+import Projects from "./Projects";
 import SocialBar from "./SocialBar";
 
 function App() {
@@ -12,9 +13,7 @@ function App() {
 
       <About/>
 
-      <section id="projects" className="h-screen flex items-center justify-center">
-        <h1>Mes projets</h1>
-      </section>
+      <Projects/>
 
       <section id="contact" className="h-screen flex items-center justify-center">
         <h1>Contactez moi</h1>
