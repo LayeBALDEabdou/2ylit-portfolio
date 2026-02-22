@@ -1,11 +1,39 @@
+import { useState } from 'react';
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
 function Contact() {
+  const [nom, setNom] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [statut, setStatut] = useState('');
+
+  const handleSubmit = () => {
+    if (!nom || !email || !message) {
+      setStatut('Veuillez remplir tous les champs.');
+      return;
+    }
+
+    emailjs.send(
+      'service_l6lj7um',
+      'template_kv6lgql',
+      { nom, email, message },
+      'zomioco6AdrbWYEie'
+    )
+    .then(() => {
+      setStatut('Message envoyé avec succès !');
+      setNom('');
+      setEmail('');
+      setMessage('');
+    })
+    .catch(() => setStatut('Erreur, réessaie plus tard.'));
+  };
+
   return (
     <section id="contact" className="min-h-screen bg-white flex items-center justify-center px-20 pt-24 pb-16">
       <div className="w-full max-w-5xl flex gap-20">
 
-        {/* Côté gauche - Texte + Réseaux */}
+        {/* Côté gauche */}
         <div className="flex-1 flex flex-col justify-center">
           <h2 className="text-6xl font-extrabold uppercase tracking-widest mb-4">
             Contactez <br /> moi
@@ -17,7 +45,6 @@ function Contact() {
             Disponible pour des projets freelance, des collaborations ou simplement pour échanger. N'hésitez pas à me contacter !
           </p>
 
-          {/* Réseaux sociaux */}
           <div className="flex gap-4">
             <a href="https://github.com/LayeBALDEabdou" target="_blank" rel="noreferrer"
               className="flex items-center gap-2 border border-black px-5 py-3 text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-300">
@@ -42,6 +69,8 @@ function Contact() {
               <input
                 type="text"
                 placeholder="Votre nom"
+                value={nom}
+                onChange={(e) => setNom(e.target.value)}
                 className="border-b border-gray-300 py-3 text-sm outline-none focus:border-black transition-all duration-300 placeholder-gray-300"
               />
             </div>
@@ -51,6 +80,8 @@ function Contact() {
               <input
                 type="email"
                 placeholder="Votre email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="border-b border-gray-300 py-3 text-sm outline-none focus:border-black transition-all duration-300 placeholder-gray-300"
               />
             </div>
@@ -60,11 +91,20 @@ function Contact() {
               <textarea
                 rows={5}
                 placeholder="Votre message..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 className="border-b border-gray-300 py-3 text-sm outline-none focus:border-black transition-all duration-300 placeholder-gray-300 resize-none"
               />
             </div>
 
-            <button className="mt-4 bg-black text-white py-4 text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all duration-300">
+            {statut && (
+              <p className="text-sm tracking-widest uppercase text-gray-500">{statut}</p>
+            )}
+
+            <button
+              onClick={handleSubmit}
+              className="mt-4 bg-black text-white py-4 text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all duration-300"
+            >
               Envoyer →
             </button>
           </div>
