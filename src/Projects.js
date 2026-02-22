@@ -29,7 +29,7 @@ function Projects() {
   useEffect(() => { animate(); }, []);
 
   return (
-    <section id="projects" className="h-screen bg-white relative overflow-hidden flex items-center justify-center pt-24">
+    <section id="projects" className=" h-screen bg-white relative overflow-hidden flex items-center justify-center pt-24">
 
       {projects.map((project, i) => (
         <div
