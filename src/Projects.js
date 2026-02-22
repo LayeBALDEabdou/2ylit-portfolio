@@ -1,11 +1,15 @@
 import { useRef, useEffect } from 'react';
+import ram_monitor from './assets/ram_monitor1.jpeg'
+import easyTol from './assets/easyTol1.jpeg'
+import portfolio from './assets/portfolio.png'
+import knyxis from './assets/knyxis.png'
 
 const projects = [
-  { num: '01', title: 'Projet Web', desc: 'Application React', img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400' },
-  { num: '02', title: 'Portfolio', desc: 'React + Tailwind', img: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400' },
-  { num: '03', title: 'Mobile App', desc: 'Flutter + Dart', img: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400' },
-  { num: '04', title: 'API Django', desc: 'Backend Python', img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400' },
-  { num: '05', title: 'Linux Tools', desc: 'Programmation C', img: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=400' },
+  { num: '01', title: 'Portfolio', desc: 'React + Tailwind', img: portfolio },
+  { num: '02', title: 'Ram_monitor', desc: 'C', img: ram_monitor },
+  { num: '03', title: 'easyTol', desc: 'Alpine js + Django', img: easyTol },
+  { num: '04', title: 'knyxis', desc: 'Electron', img: knyxis },
+  { num: '05', title: 'enclos', desc: 'c', img: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=400' },
 ];
 
 function Projects() {

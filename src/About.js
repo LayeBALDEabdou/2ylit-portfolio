@@ -57,8 +57,8 @@ function About() {
         </p>
         <div className="flex gap-12">
           {[
-            { num: '10+', label: 'Projets réalisés' },
-            { num: '5+',  label: 'Langages maîtrisés' },
+            { num: '5+', label: 'Projets réalisés' },
+            { num: '3+',  label: 'Langages maîtrisés' },
           ].map((stat) => (
             <div key={stat.label} className="border-l-2 border-black pl-4">
               <div className="text-4xl font-extrabold">{stat.num}</div>
