@@ -1,19 +1,19 @@
-import About from "./About";
-import Contact from "./Contact";
-import Home from "./home";
-import Navbar from "./Navbar";
-import Projects from "./Projects";
-import SocialBar from "./SocialBar";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
+import Projects from "./pages/Projects";
+import SocialBar from "./components/SocialBar";
 
 function App() {
   return (
     <div>
-      <Navbar/>
-      <SocialBar/>
-      <Home/>
-      <About/>
-      <Projects/>
-      <Contact/>
+      <Navbar />
+      <SocialBar />
+      <Home />
+      <About />
+      <Projects />
+      <Contact />
     </div>
   );
 }

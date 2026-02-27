@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import ram_monitor from './assets/ram_monitor1.jpeg'
-import easyTol from './assets/easyTol1.jpeg'
-import portfolio from './assets/portfolio.png'
-import knyxis from './assets/knyxis.png'
+import { useState, useRef, useCallback } from 'react';
+import ram_monitor from '../assets/ram_monitor1.jpeg'
+import easyTol from '../assets/easyTol1.jpeg'
+import portfolio from '../assets/portfolio.png'
+import knyxis from '../assets/knyxis.png'
 
 const projects = [
   { num: '01', title: 'Portfolio', desc: 'React + Tailwind', img: portfolio },
@@ -14,12 +14,50 @@ const projects = [
 
 function Projects() {
   const [active, setActive] = useState(2);
+  const touchStartX = useRef(0);
+  const wheelCooldown = useRef(false);
+
+  const goNext = useCallback(() => {
+    setActive((prev) => Math.min(prev + 1, projects.length - 1));
+  }, []);
+
+  const goPrev = useCallback(() => {
+    setActive((prev) => Math.max(prev - 1, 0));
+  }, []);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) goNext();
+      else goPrev();
+    }
+  };
+
+  const handleWheel = (e) => {
+    if (wheelCooldown.current) return;
+    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (Math.abs(delta) > 30) {
+      if (delta > 0) goNext();
+      else goPrev();
+      wheelCooldown.current = true;
+      setTimeout(() => { wheelCooldown.current = false; }, 400);
+    }
+  };
 
   return (
     <section id="projects" className="min-h-screen bg-white relative overflow-hidden flex items-center justify-center pt-20 md:pt-24 pb-10">
 
       {/* Desktop carousel */}
-      <div className="hidden md:flex items-center justify-center w-full h-[500px] relative">
+      <div
+        className="hidden md:flex items-center justify-center w-full h-[500px] relative"
+        onWheel={handleWheel}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         {projects.map((project, i) => {
           const diff = i - active;
           return (
@@ -28,7 +66,7 @@ function Projects() {
               onClick={() => setActive(i)}
               className="absolute w-72 lg:w-80 h-[400px] lg:h-[450px] rounded-xl overflow-hidden cursor-pointer bg-gray-900 shadow-2xl"
               style={{
-                transform: `translateX(${diff * 300}px) scale(${diff === 0 ? 1.2 : 0.85})`,
+                transform: `translateX(${diff * 350}px) scale(${diff === 0 ? 1.15 : 0.85})`,
                 zIndex: diff === 0 ? 10 : 5 - Math.abs(diff),
                 opacity: Math.abs(diff) > 2 ? 0 : diff === 0 ? 1 : 0.6,
                 transition: 'transform .6s cubic-bezier(0, 0.02, 0, 1), opacity .6s ease',

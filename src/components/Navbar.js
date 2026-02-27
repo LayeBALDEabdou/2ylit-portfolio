@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import moi from './assets/moi.jpg';
+import moi from '../assets/moi.jpg';
 
 function Navbar() {
   const [active, setActive] = useState('home');

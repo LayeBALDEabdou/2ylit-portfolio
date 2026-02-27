@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import clavier from './assets/clavier.jpg';
+import clavier from '../assets/clavier.jpg';
 
 const textes = [
   'Computer Scientist',
