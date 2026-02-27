@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import moi from './assets/moi.jpg';
 
 function Navbar() {
   const [active, setActive] = useState('home');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll('section');
-    
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -20,18 +22,62 @@ function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  const links = [
+    { id: 'home', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'projects', label: 'Project' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
+  const handleClick = (id) => {
+    setActive(id);
+    setMenuOpen(false);
+  };
+
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white z-50 flex items-center justify-between px-10 py-4 shadow-md">
+    <nav className="fixed top-0 left-0 w-full bg-white z-50 flex items-center justify-between px-4 sm:px-6 md:px-10 py-3 md:py-4 shadow-md">
       <div className="flex items-center gap-3">
-        <img src={moi} alt="laye" className="w-20 h-20 rounded-full object-cover" />
+        <img src={moi} alt="Abdoulaye Balde" className="w-12 h-12 md:w-20 md:h-20 rounded-full object-cover" />
         <span className="font-bold text-sm tracking-widest uppercase">2ylit</span>
       </div>
-      <ul className="flex items-center gap-10">
-        <li><a href="#home" onClick={() => setActive('home')} className={`uppercase text-sm font-bold tracking-widest border-b-2 pb-1 transition-all duration-300 ${active === 'home' ? 'border-black' : 'border-transparent hover:border-black'}`}>Home</a></li>
-        <li><a href="#about" onClick={() => setActive('about')} className={`uppercase text-sm font-bold tracking-widest border-b-2 pb-1 transition-all duration-300 ${active === 'about' ? 'border-black' : 'border-transparent hover:border-black'}`}>About</a></li>
-        <li><a href="#projects" onClick={() => setActive('projects')} className={`uppercase text-sm font-bold tracking-widest border-b-2 pb-1 transition-all duration-300 ${active === 'projects' ? 'border-black' : 'border-transparent hover:border-black'}`}>Project</a></li>
-        <li><a href="#contact" onClick={() => setActive('contact')} className={`uppercase text-sm font-bold tracking-widest border-b-2 pb-1 transition-all duration-300 ${active === 'contact' ? 'border-black' : 'border-transparent hover:border-black'}`}>Contact</a></li>
+
+      {/* Hamburger button - mobile only */}
+      <button
+        onClick={() => setMenuOpen(!menuOpen)}
+        className="md:hidden text-black p-2 z-50"
+        aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+      >
+        {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+      </button>
+
+      {/* Desktop nav */}
+      <ul className="hidden md:flex items-center gap-10">
+        {links.map((link) => (
+          <li key={link.id}>
+            <a
+              href={`#${link.id}`}
+              onClick={() => handleClick(link.id)}
+              className={`uppercase text-sm font-bold tracking-widest border-b-2 pb-1 transition-all duration-300 ${active === link.id ? 'border-black' : 'border-transparent hover:border-black'}`}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
       </ul>
+
+      {/* Mobile nav overlay */}
+      <div className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8 transition-all duration-300 md:hidden ${menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+        {links.map((link) => (
+          <a
+            key={link.id}
+            href={`#${link.id}`}
+            onClick={() => handleClick(link.id)}
+            className={`uppercase text-2xl font-bold tracking-widest border-b-2 pb-1 transition-all duration-300 ${active === link.id ? 'border-black' : 'border-transparent'}`}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
     </nav>
   );
 }

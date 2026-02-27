@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useState } from 'react';
 import ram_monitor from './assets/ram_monitor1.jpeg'
 import easyTol from './assets/easyTol1.jpeg'
 import portfolio from './assets/portfolio.png'
@@ -13,55 +13,65 @@ const projects = [
 ];
 
 function Projects() {
-  const activeRef = useRef(2);
-  const itemsRef = useRef([]);
-
-  const animate = (active = activeRef.current) => {
-    itemsRef.current.forEach((item, i) => {
-      if (!item) return;
-      const diff = i - active;
-      item.style.transform = `translateX(${diff * 340}px) scale(${diff === 0 ? 1.2 : 0.85})`;
-      item.style.zIndex = diff === 0 ? 10 : 5 - Math.abs(diff);
-      item.style.opacity = Math.abs(diff) > 2 ? 0 : diff === 0 ? 1 : 0.6;
-    });
-  };
-
-  useEffect(() => { animate(); }, []);
+  const [active, setActive] = useState(2);
 
   return (
-    <section id="projects" className=" h-screen bg-white relative overflow-hidden flex items-center justify-center pt-24">
+    <section id="projects" className="min-h-screen bg-white relative overflow-hidden flex items-center justify-center pt-20 md:pt-24 pb-10">
 
-      {projects.map((project, i) => (
-        <div
-          key={i}
-          ref={(el) => (itemsRef.current[i] = el)}
-          onClick={() => { activeRef.current = i; animate(i); }}
-          className="absolute w-80 h-[450px] rounded-xl overflow-hidden cursor-pointer bg-gray-900 shadow-2xl"
-          style={{ transition: 'transform .6s cubic-bezier(0, 0.02, 0, 1), opacity .6s ease' }}
-        >
-          {/* Overlay gradient */}
-          <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+      {/* Desktop carousel */}
+      <div className="hidden md:flex items-center justify-center w-full h-[500px] relative">
+        {projects.map((project, i) => {
+          const diff = i - active;
+          return (
+            <div
+              key={project.num}
+              onClick={() => setActive(i)}
+              className="absolute w-72 lg:w-80 h-[400px] lg:h-[450px] rounded-xl overflow-hidden cursor-pointer bg-gray-900 shadow-2xl"
+              style={{
+                transform: `translateX(${diff * 300}px) scale(${diff === 0 ? 1.2 : 0.85})`,
+                zIndex: diff === 0 ? 10 : 5 - Math.abs(diff),
+                opacity: Math.abs(diff) > 2 ? 0 : diff === 0 ? 1 : 0.6,
+                transition: 'transform .6s cubic-bezier(0, 0.02, 0, 1), opacity .6s ease',
+              }}
+            >
+              <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+              <img src={project.img} alt={project.title} className="w-full h-full object-cover pointer-events-none" />
+              <div className="absolute z-20 top-2 left-5 text-white font-extrabold opacity-80" style={{ fontSize: '70px' }}>
+                {project.num}
+              </div>
+              <div className="absolute z-20 bottom-8 left-5 text-white font-bold uppercase tracking-widest text-xl">
+                {project.title}
+              </div>
+              <div className="absolute z-20 bottom-3 left-5 text-white/70 uppercase tracking-widest text-xs">
+                {project.desc}
+              </div>
+            </div>
+          );
+        })}
+      </div>
 
-          {/* Image */}
-          <img src={project.img} alt={project.title} className="w-full h-full object-cover pointer-events-none" />
-
-          {/* Numéro */}
-          <div className="absolute z-20 top-2 left-5 text-white font-extrabold opacity-80"
-            style={{ fontSize: '70px' }}>
-            {project.num}
+      {/* Mobile vertical list */}
+      <div className="flex md:hidden flex-col gap-6 px-6 w-full">
+        <h3 className="text-2xl font-extrabold uppercase tracking-widest text-center mb-2">Projets</h3>
+        {projects.map((project) => (
+          <div
+            key={project.num}
+            className="relative w-full h-56 sm:h-64 rounded-xl overflow-hidden bg-gray-900 shadow-lg"
+          >
+            <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
+            <img src={project.img} alt={project.title} className="w-full h-full object-cover" />
+            <div className="absolute z-20 top-2 left-4 text-white font-extrabold opacity-80 text-4xl">
+              {project.num}
+            </div>
+            <div className="absolute z-20 bottom-7 left-4 text-white font-bold uppercase tracking-widest text-lg">
+              {project.title}
+            </div>
+            <div className="absolute z-20 bottom-2 left-4 text-white/70 uppercase tracking-widest text-xs">
+              {project.desc}
+            </div>
           </div>
-
-          {/* Titre */}
-          <div className="absolute z-20 bottom-8 left-5 text-white font-bold uppercase tracking-widest text-xl">
-            {project.title}
-          </div>
-
-          {/* Description */}
-          <div className="absolute z-20 bottom-3 left-5 text-white/70 uppercase tracking-widest text-xs">
-            {project.desc}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
     </section>
   );

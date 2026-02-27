@@ -5,11 +5,12 @@ function SocialBar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed left-4 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-3">
-      
+    <div className="fixed left-4 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center gap-3">
+
       <button
         onClick={() => setOpen(!open)}
         className="bg-black text-white p-3 rounded-full shadow-lg hover:bg-gray-800 transition-all duration-300"
+        aria-label={open ? 'Fermer les réseaux sociaux' : 'Ouvrir les réseaux sociaux'}
       >
         {open ? <FaTimes size={18} /> : <FaGlobe size={18} />}
       </button>
