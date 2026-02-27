@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { FaTimes, FaTerminal } from 'react-icons/fa';
+import { FaTerminal } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const fileSystem = {
