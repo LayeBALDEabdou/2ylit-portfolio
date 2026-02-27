@@ -47,7 +47,7 @@ const infos = [
 
 function About() {
   return (
-    <section id="about" className="min-h-screen bg-white px-4 sm:px-10 md:px-20 pt-20 md:pt-24 pb-12 md:pb-16">
+    <section id="about" className="min-h-screen bg-white px-4 sm:px-10 md:px-20 pb-12 md:pb-16 pt-8 scroll-mt-[72px] md:scroll-mt-[88px]">
 
 
       <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center mb-12">

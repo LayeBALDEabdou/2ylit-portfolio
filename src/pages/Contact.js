@@ -49,7 +49,7 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="min-h-screen bg-white flex items-center justify-center px-4 sm:px-10 md:px-20 pt-20 md:pt-24 pb-12 md:pb-16">
+    <section id="contact" className="min-h-screen bg-white flex items-center justify-center px-4 sm:px-10 md:px-20 pb-12 md:pb-16 pt-8 scroll-mt-[72px] md:scroll-mt-[88px]">
       <div className="w-full max-w-5xl flex flex-col md:flex-row gap-12 md:gap-20">
 
 

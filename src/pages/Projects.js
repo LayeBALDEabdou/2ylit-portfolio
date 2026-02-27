@@ -115,7 +115,7 @@ function Projects() {
   };
 
   return (
-    <section id="projects" className="min-h-screen bg-white relative overflow-hidden flex flex-col items-center justify-center pt-20 md:pt-24 pb-12 md:pb-16">
+    <section id="projects" className="min-h-screen bg-white relative overflow-hidden flex flex-col items-center justify-center pb-12 md:pb-16 pt-8 scroll-mt-[72px] md:scroll-mt-[88px]">
 
 
       <div
