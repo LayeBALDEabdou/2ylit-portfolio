@@ -21,7 +21,7 @@ function Home() {
   }, []);
 
   return (
-    <section id="home" className="h-screen bg-white flex flex-col justify-start pt-16 md:pt-24">
+    <section id="home" className="h-screen h-screen-safe bg-white flex flex-col justify-start pt-16 md:pt-24">
       <div className="relative w-full h-full overflow-hidden">
 
         <img src={clavier} alt="Clavier d'ordinateur en arrière-plan" className="absolute inset-0 w-full h-full object-cover" />
@@ -51,7 +51,7 @@ function Home() {
             href="/cv.pdf"
             target="_blank"
             rel="noreferrer"
-            className="absolute bottom-6 right-4 sm:right-6 md:right-10 border-b-2 border-white text-white text-xs sm:text-sm tracking-widest uppercase hover:opacity-70 transition-all duration-300"
+            className="absolute bottom-8 right-4 sm:right-6 md:right-10 border-b-2 border-white text-white text-xs sm:text-sm tracking-widest uppercase hover:opacity-70 transition-all duration-300 active:opacity-50"
           >
             Voir mon CV →
           </a>

@@ -47,7 +47,7 @@ const infos = [
 
 function About() {
   return (
-    <section id="about" className="min-h-screen bg-white px-6 sm:px-10 md:px-20 pt-24 md:pt-32 pb-16 md:pb-24">
+    <section id="about" className="min-h-screen bg-white px-4 sm:px-10 md:px-20 pt-20 md:pt-32 pb-12 md:pb-24">
 
       {/* Texte + Stats */}
       <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center mb-12">
@@ -87,7 +87,7 @@ function About() {
             ))}
           </div>
 
-          <div className="flex-1 p-4 md:p-6 font-mono text-xs md:text-sm leading-loose">
+          <div className="flex-1 p-4 md:p-6 font-mono text-xs md:text-sm leading-loose overflow-x-auto">
             {codeLines.map((line) => (
               <div key={line.num} className="flex gap-4 md:gap-6">
                 <span className="text-gray-600 select-none w-5 text-right">{line.num}</span>

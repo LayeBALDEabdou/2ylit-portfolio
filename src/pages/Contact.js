@@ -30,12 +30,12 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="min-h-screen bg-white flex items-center justify-center px-6 sm:px-10 md:px-20 pt-20 md:pt-24 pb-12 md:pb-16">
+    <section id="contact" className="min-h-screen bg-white flex items-center justify-center px-4 sm:px-10 md:px-20 pt-20 md:pt-24 pb-12 md:pb-16">
       <div className="w-full max-w-5xl flex flex-col md:flex-row gap-12 md:gap-20">
 
         {/* Côté gauche */}
         <div className="flex-1 flex flex-col justify-center">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-widest mb-4">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-widest mb-4">
             Contactez <br />moi
           </h2>
           <p className="text-gray-500 text-sm tracking-widest uppercase mb-6 md:mb-10">
@@ -72,7 +72,7 @@ function Contact() {
                 placeholder="Votre nom"
                 value={nom}
                 onChange={(e) => setNom(e.target.value)}
-                className="border-b border-gray-300 py-3 text-sm outline-none focus:border-black transition-all duration-300 placeholder-gray-300"
+                className="border-b border-gray-300 py-3 text-sm outline-none focus:border-black transition-all duration-300 placeholder-gray-300 bg-transparent rounded-none appearance-none"
               />
             </div>
 
@@ -84,7 +84,7 @@ function Contact() {
                 placeholder="Votre email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="border-b border-gray-300 py-3 text-sm outline-none focus:border-black transition-all duration-300 placeholder-gray-300"
+                className="border-b border-gray-300 py-3 text-sm outline-none focus:border-black transition-all duration-300 placeholder-gray-300 bg-transparent rounded-none appearance-none"
               />
             </div>
 
@@ -96,7 +96,7 @@ function Contact() {
                 placeholder="Votre message..."
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="border-b border-gray-300 py-3 text-sm outline-none focus:border-black transition-all duration-300 placeholder-gray-300 resize-none"
+                className="border-b border-gray-300 py-3 text-sm outline-none focus:border-black transition-all duration-300 placeholder-gray-300 bg-transparent rounded-none appearance-none resize-none"
               />
             </div>
 
@@ -106,7 +106,7 @@ function Contact() {
 
             <button
               onClick={handleSubmit}
-              className="mt-2 md:mt-4 bg-black text-white py-3.5 md:py-4 text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all duration-300"
+              className="mt-2 md:mt-4 bg-black text-white py-3.5 md:py-4 text-sm font-bold uppercase tracking-widest hover:bg-gray-800 active:bg-gray-700 transition-all duration-300"
             >
               Envoyer →
             </button>

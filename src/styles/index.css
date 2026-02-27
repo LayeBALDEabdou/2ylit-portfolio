@@ -5,3 +5,15 @@
 html {
   scroll-behavior: smooth;
 }
+
+body {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Fix mobile 100vh issue (address bar) */
+@supports (height: 100dvh) {
+  .h-screen-safe {
+    height: 100dvh !important;
+  }
+}

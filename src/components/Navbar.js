@@ -44,7 +44,7 @@ function Navbar() {
       {/* Hamburger button - mobile only */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className="md:hidden text-black p-2 z-50"
+        className="md:hidden text-black p-2 z-[70] relative"
         aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
       >
         {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
@@ -66,7 +66,7 @@ function Navbar() {
       </ul>
 
       {/* Mobile nav overlay */}
-      <div className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8 transition-all duration-300 md:hidden ${menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+      <div className={`fixed inset-0 bg-white z-[60] flex flex-col items-center justify-center gap-8 transition-all duration-300 md:hidden ${menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
         {links.map((link) => (
           <a
             key={link.id}

@@ -41,6 +41,7 @@ function Projects() {
     if (wheelCooldown.current) return;
     const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
     if (Math.abs(delta) > 30) {
+      e.preventDefault();
       if (delta > 0) goNext();
       else goPrev();
       wheelCooldown.current = true;
@@ -66,7 +67,7 @@ function Projects() {
               onClick={() => setActive(i)}
               className="absolute w-72 lg:w-80 h-[400px] lg:h-[450px] rounded-xl overflow-hidden cursor-pointer bg-gray-900 shadow-2xl"
               style={{
-                transform: `translateX(${diff * 350}px) scale(${diff === 0 ? 1.15 : 0.85})`,
+                transform: `translateX(${diff * 320}px) scale(${diff === 0 ? 1.1 : 0.85})`,
                 zIndex: diff === 0 ? 10 : 5 - Math.abs(diff),
                 opacity: Math.abs(diff) > 2 ? 0 : diff === 0 ? 1 : 0.6,
                 transition: 'transform .6s cubic-bezier(0, 0.02, 0, 1), opacity .6s ease',
@@ -89,7 +90,11 @@ function Projects() {
       </div>
 
       {/* Mobile vertical list */}
-      <div className="flex md:hidden flex-col gap-6 px-6 w-full">
+      <div
+        className="flex md:hidden flex-col gap-5 px-4 sm:px-6 w-full"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <h3 className="text-2xl font-extrabold uppercase tracking-widest text-center mb-2">Projets</h3>
         {projects.map((project) => (
           <div
