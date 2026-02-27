@@ -7,20 +7,36 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const sections = document.querySelectorAll('section');
+    const handleScroll = () => {
+      const sections = document.querySelectorAll('section');
+      const navHeight = 80;
+      let current = 'home';
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActive(entry.target.id);
+      sections.forEach((section) => {
+        const top = section.offsetTop - navHeight - 100;
+        if (window.scrollY >= top) {
+          current = section.id;
         }
       });
-    }, { threshold: 0.3 });
 
-    sections.forEach((section) => observer.observe(section));
+      setActive(current);
+    };
 
-    return () => observer.disconnect();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
   const links = [
     { id: 'home', label: 'Home' },
@@ -41,7 +57,7 @@ function Navbar() {
         <span className="font-bold text-sm tracking-widest uppercase">2ylit</span>
       </div>
 
-      {/* Hamburger button - mobile only */}
+
       <button
         onClick={() => setMenuOpen(!menuOpen)}
         className="md:hidden text-black p-2 z-[70] relative"
@@ -50,7 +66,7 @@ function Navbar() {
         {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
       </button>
 
-      {/* Desktop nav */}
+
       <ul className="hidden md:flex items-center gap-10">
         {links.map((link) => (
           <li key={link.id}>
@@ -65,8 +81,8 @@ function Navbar() {
         ))}
       </ul>
 
-      {/* Mobile nav overlay */}
-      <div className={`fixed inset-0 bg-white z-[60] flex flex-col items-center justify-center gap-8 transition-all duration-300 md:hidden ${menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+
+      <div className={`fixed inset-0 bg-white z-[60] flex flex-col items-center justify-center gap-8 transition-all duration-300 md:hidden ${menuOpen ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none'}`}>
         {links.map((link) => (
           <a
             key={link.id}

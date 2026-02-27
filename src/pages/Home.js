@@ -29,7 +29,7 @@ function Home() {
 
         <div className="relative z-10 h-full flex items-center px-6 sm:px-10 md:px-20">
           <div className="text-white border-l-4 border-white pl-4 sm:pl-6">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-widest uppercase">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-wider sm:tracking-widest uppercase">
               Abdoulaye <br />Balde
             </h1>
 

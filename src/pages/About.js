@@ -47,9 +47,9 @@ const infos = [
 
 function About() {
   return (
-    <section id="about" className="min-h-screen bg-white px-4 sm:px-10 md:px-20 pt-20 md:pt-32 pb-12 md:pb-24">
+    <section id="about" className="min-h-screen bg-white px-4 sm:px-10 md:px-20 pt-20 md:pt-24 pb-12 md:pb-16">
 
-      {/* Texte + Stats */}
+
       <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center mb-12">
         <p className="text-gray-600 leading-relaxed text-base md:text-lg flex-1">
           Passionné par <strong>Linux</strong> et la <strong>programmation système en C</strong>,
@@ -68,7 +68,7 @@ function About() {
         </div>
       </div>
 
-      {/* Terminal */}
+
       <div className="rounded-xl overflow-hidden mb-12">
         <div className="bg-gray-200 px-4 py-3 flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-gray-400" />
@@ -102,10 +102,10 @@ function About() {
         </div>
       </div>
 
-      {/* Stack */}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {Object.entries(stack).map(([categorie, techs]) => (
-          <div key={categorie} className="border border-gray-100 rounded-2xl p-5 md:p-6">
+          <div key={categorie} className="border border-gray-200 rounded-2xl p-5 md:p-6">
             <h4 className="font-bold text-xs tracking-widest uppercase mb-4 text-gray-400">{categorie}</h4>
             <div className="flex flex-wrap gap-2">
               {techs.map((tech) => (

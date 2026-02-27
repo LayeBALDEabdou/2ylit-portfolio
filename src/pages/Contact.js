@@ -7,12 +7,26 @@ function Contact() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [statut, setStatut] = useState('');
+  const [statutType, setStatutType] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const isValidEmail = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
 
   const handleSubmit = () => {
     if (!nom || !email || !message) {
       setStatut('Veuillez remplir tous les champs.');
+      setStatutType('error');
       return;
     }
+
+    if (!isValidEmail(email)) {
+      setStatut('Veuillez entrer un email valide.');
+      setStatutType('error');
+      return;
+    }
+
+    setLoading(true);
+    setStatut('');
 
     emailjs.send(
       'service_l6lj7um',
@@ -22,18 +36,23 @@ function Contact() {
     )
       .then(() => {
         setStatut('Message envoyé avec succès !');
+        setStatutType('success');
         setNom('');
         setEmail('');
         setMessage('');
       })
-      .catch(() => setStatut('Erreur, réessaie plus tard.'));
+      .catch(() => {
+        setStatut('Erreur lors de l\'envoi. Réessaie plus tard.');
+        setStatutType('error');
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
     <section id="contact" className="min-h-screen bg-white flex items-center justify-center px-4 sm:px-10 md:px-20 pt-20 md:pt-24 pb-12 md:pb-16">
       <div className="w-full max-w-5xl flex flex-col md:flex-row gap-12 md:gap-20">
 
-        {/* Côté gauche */}
+
         <div className="flex-1 flex flex-col justify-center">
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-widest mb-4">
             Contactez <br />moi
@@ -61,7 +80,7 @@ function Contact() {
           </div>
         </div>
 
-        {/* Côté droit - Formulaire */}
+
         <div className="flex-1">
           <div className="flex flex-col gap-5 md:gap-6">
             <div className="flex flex-col gap-1">
@@ -101,14 +120,17 @@ function Contact() {
             </div>
 
             {statut && (
-              <p className="text-sm tracking-widest uppercase text-gray-500">{statut}</p>
+              <p className={`text-sm tracking-widest uppercase ${statutType === 'success' ? 'text-green-600' : 'text-red-500'}`}>
+                {statut}
+              </p>
             )}
 
             <button
               onClick={handleSubmit}
-              className="mt-2 md:mt-4 bg-black text-white py-3.5 md:py-4 text-sm font-bold uppercase tracking-widest hover:bg-gray-800 active:bg-gray-700 transition-all duration-300"
+              disabled={loading}
+              className={`mt-2 md:mt-4 py-3.5 md:py-4 text-sm font-bold uppercase tracking-widest transition-all duration-300 ${loading ? 'bg-gray-400 text-white cursor-not-allowed' : 'bg-black text-white hover:bg-gray-800 active:bg-gray-700'}`}
             >
-              Envoyer →
+              {loading ? 'Envoi en cours...' : 'Envoyer →'}
             </button>
           </div>
         </div>
