@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { FaTimes, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 import ram_monitor from '../assets/ram_monitor1.jpeg'
 import easyTol from '../assets/easyTol1.jpeg'
@@ -63,6 +63,7 @@ function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const touchStartX = useRef(0);
   const wheelCooldown = useRef(false);
+  const containerRef = useRef(null);
 
   const goNext = useCallback(() => {
     setActive((prev) => Math.min(prev + 1, projects.length - 1));
@@ -84,16 +85,24 @@ function Projects() {
     }
   };
 
-  const handleWheel = (e) => {
-    if (wheelCooldown.current) return;
-    if (Math.abs(e.deltaX) > 30 && Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-      e.preventDefault();
-      if (e.deltaX > 0) goNext();
-      else goPrev();
-      wheelCooldown.current = true;
-      setTimeout(() => { wheelCooldown.current = false; }, 400);
-    }
-  };
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleWheelEvent = (e) => {
+      if (wheelCooldown.current) return;
+      if (Math.abs(e.deltaX) > 30 && Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+        if (e.deltaX > 0) goNext();
+        else goPrev();
+        wheelCooldown.current = true;
+        setTimeout(() => { wheelCooldown.current = false; }, 400);
+      }
+    };
+
+    container.addEventListener('wheel', handleWheelEvent, { passive: false });
+    return () => container.removeEventListener('wheel', handleWheelEvent);
+  }, [goNext, goPrev]);
 
   const openProject = (project) => {
     setSelectedProject(project);
@@ -110,8 +119,8 @@ function Projects() {
 
 
       <div
+        ref={containerRef}
         className="hidden md:flex items-center justify-center w-full h-[500px] relative"
-        onWheel={handleWheel}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -162,7 +171,6 @@ function Projects() {
 
 
       <div className="flex md:hidden flex-col gap-5 px-4 sm:px-6 w-full">
-        <h3 className="text-2xl font-extrabold uppercase tracking-widest text-center mb-2">Projets</h3>
         {projects.map((project) => (
           <div
             key={project.num}
