@@ -30,7 +30,6 @@ function App() {
       <Projects />
       <Contact />
 
-      {/* Bouton pour ouvrir/fermer le terminal, stylisé comme une touche de clavier */}
       {!isTerminalOpen && (
         <button
           onClick={() => setIsTerminalOpen(true)}

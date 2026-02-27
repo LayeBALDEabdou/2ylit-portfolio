@@ -21,7 +21,7 @@ const fileSystem = {
 };
 
 const commandsHelp = `Commandes disponibles:
-  whoami   - Affiche les informations sur l'utilisateur
+  whoami   - Affiche les infos
   ls       - Liste les fichiers disponibles
   cat      - Affiche le contenu d'un fichier (ex: cat about.txt)
   cd       - Changer de dossier (ex: cd projects)
@@ -136,7 +136,7 @@ function Terminal({ isOpen, onClose }) {
                         isError = true;
                     }
                 } else if (currentPath !== '~' && target === currentPath) {
-                    // Do nothing, already there
+
                 } else {
                     output = `cd: ${target}: Aucun fichier ou dossier de ce type`;
                     isError = true;
@@ -190,7 +190,6 @@ function Terminal({ isOpen, onClose }) {
                     transition={{ duration: 0.3, ease: 'easeOut' }}
                     className="fixed bottom-4 left-4 sm:bottom-8 sm:left-8 w-[95vw] sm:w-[600px] h-[400px] bg-[#1e1e1e] rounded-lg shadow-2xl overflow-hidden z-[100] border border-gray-700 flex flex-col font-mono text-sm"
                 >
-                    {/* Header */}
                     <div className="bg-[#323233] px-4 py-2 flex items-center justify-between border-b border-gray-900 select-none">
                         <div className="flex items-center gap-2 text-gray-400">
                             <FaTerminal size={14} />
@@ -203,7 +202,6 @@ function Terminal({ isOpen, onClose }) {
                         </div>
                     </div>
 
-                    {/* Body */}
                     <div
                         className="flex-1 p-4 overflow-y-auto text-gray-300"
                         onClick={() => inputRef.current?.focus()}
