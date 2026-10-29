@@ -9,6 +9,8 @@
     <meta name="description" content="Portfolio de 2YLIT" />
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
+    <!-- la photo de l'accueil se charge en même temps que le JS, pas après -->
+    <link rel="preload" as="image" href="/src/assets/moi.webp" type="image/webp" fetchpriority="high" />
     <title>2YLIT-portfolio</title>
   </head>
   <body>

@@ -1,7 +1,8 @@
-import ram_monitor from '../assets/ram_monitor1.jpeg'
-import easyTol from '../assets/easyTol1.jpeg'
-import portfolio from '../assets/portfolio.png'
-import knyxis from '../assets/knyxis.png'
+import portfolio from '../assets/projet-portfolio.webp'
+import ram_monitor from '../assets/projet-ram-monitor.webp'
+import easyTol from '../assets/projet-easytol.webp'
+import knyxis from '../assets/projet-knyxis.webp'
+import enclos from '../assets/projet-enclos.webp'
 
 // slug : utilisé dans l'adresse de la page (/projets/<slug>)
 const projects = [
@@ -49,7 +50,7 @@ const projects = [
     slug: 'enclos',
     title: 'enclos',
     desc: 'C',
-    img: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=1200',
+    img: enclos,
     details: "Projet système en C explorant les concepts de gestion mémoire et de programmation bas niveau sous Linux.",
     techs: ['C', 'Linux', 'Makefile'],
     github: 'https://github.com/LayeBALDEabdou/',
