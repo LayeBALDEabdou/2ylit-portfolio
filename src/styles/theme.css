@@ -1,0 +1,49 @@
+/* ==========================================================================
+   THÈME DU SITE — tout se règle ici.
+   Modifie une valeur, le site entier suit (Tailwind lit ces variables).
+   ========================================================================== */
+
+/* --- Police -------------------------------------------------------------
+   Pour changer de police : remplace l'URL Google Fonts ET --police / --police-code. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --police: 'Inter', system-ui, sans-serif;
+  --police-code: 'JetBrains Mono', ui-monospace, monospace;  /* surtitres « // 01. » */
+
+  /* --- Palette ------------------------------------------------------------
+     Format « R G B » (sans virgules) pour garder les opacités Tailwind
+     comme text-accent/40. */
+  --couleur-fond: 243 239 230;      /* fond de page        #f3efe6 */
+  --couleur-carte: 255 253 248;     /* cartes, formulaire  #fffdf8 */
+  --couleur-encre: 20 33 61;        /* titres              #14213d */
+  --couleur-texte: 87 83 78;        /* paragraphes         #57534e */
+  --couleur-sourdine: 120 113 108;  /* surtitres, labels   #78716c */
+  --couleur-discret: 168 162 158;   /* numéros, placeholders #a8a29e */
+  --couleur-trait: 231 229 228;     /* bordures, filets    #e7e5e4 */
+  --couleur-accent: 30 58 138;      /* liens, logo         #1e3a8a */
+  --couleur-eclat: 212 160 23;      /* touche moutarde     #d4a017 */
+  --couleur-profond: 20 33 61;      /* fond du voile modal #14213d */
+
+  /* --- Tailles de texte ---------------------------------------------------
+     clamp(min, idéal, max) : la taille s'adapte toute seule à l'écran. */
+  --taille-hero: clamp(1.875rem, 1.3rem + 2vw, 2.6rem);
+  --taille-titre: clamp(1.875rem, 1.5rem + 1.2vw, 2.25rem);
+  --taille-titre-carte: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);
+  --taille-menu: clamp(1.875rem, 1.2rem + 2.6vw, 3rem);
+  --taille-accroche: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --taille-sous-titre: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --taille-corps: clamp(1rem, 0.97rem + 0.12vw, 1.0625rem);
+  --taille-lien: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --taille-petit: 0.875rem;
+  --taille-surtitre: 0.75rem;
+
+  /* --- Cartes -------------------------------------------------------------- */
+  --carte-rayon: 0px;               /* ex. 12px pour des coins arrondis */
+  --carte-padding: clamp(1.75rem, 1.4rem + 1vw, 2.5rem);
+
+  /* --- Cadre décalé (comme derrière la photo) ------------------------------ */
+  --cadre-decalage: 12px;           /* 0px pour le retirer */
+  --cadre-epaisseur: 2px;
+  --cadre-couleur: rgb(var(--couleur-eclat));
+}

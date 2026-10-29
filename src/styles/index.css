@@ -2,19 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Couleurs, tailles, police et forme des cartes : voir theme.css */
+
 html {
   scroll-behavior: smooth;
+  /* Réserve la place de la barre de défilement : la page ne se décale pas
+     quand le menu ou la fiche projet bloquent le défilement. */
+  scrollbar-gutter: stable;
 }
 
 body {
+  @apply bg-fond font-sans antialiased;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
-}
-
-@supports (height: 100dvh) {
-  .h-screen-safe {
-    height: 100dvh !important;
-  }
 }
 
 ::-webkit-scrollbar {
@@ -27,27 +27,49 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
+  @apply bg-trait rounded;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  @apply bg-accent;
 }
 
-.fixed.bottom-4.left-4::-webkit-scrollbar,
-.flex-1.p-4.overflow-y-auto::-webkit-scrollbar {
-  width: 6px;
+::selection {
+  @apply bg-accent text-carte;
 }
 
-.flex-1.p-4.overflow-y-auto::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-}
+/* Styles réutilisés dans plusieurs sections */
+@layer components {
+  .carte {
+    @apply relative bg-carte rounded-carte;
+  }
 
-.flex-1.p-4.overflow-y-auto::-webkit-scrollbar-thumb {
-  background: #4b5563;
-}
+  /* Cadre décalé derrière la carte. Le parent doit avoir la classe
+     « isolate » pour que le cadre passe sous la carte. */
+  .carte::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border: var(--cadre-epaisseur) solid var(--cadre-couleur);
+    border-radius: var(--carte-rayon);
+    transform: translate(var(--cadre-decalage), var(--cadre-decalage));
+    pointer-events: none;
+  }
 
-.flex-1.p-4.overflow-y-auto::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
+  .surtitre {
+    @apply text-sourdine uppercase tracking-[0.2em] text-surtitre font-medium;
+  }
+
+  .titre-section {
+    @apply text-encre text-titre font-bold tracking-tight;
+  }
+
+  .sous-titre {
+    @apply text-texte text-sous-titre mt-3;
+  }
+
+  .lien-souligne {
+    @apply inline-flex items-center gap-2 text-accent text-lien font-medium border-b-2 border-accent pb-1 hover:gap-3 transition-all duration-200;
+  }
 }

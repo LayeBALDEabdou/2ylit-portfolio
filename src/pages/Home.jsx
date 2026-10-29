@@ -1,62 +1,58 @@
-import { useState, useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import clavier from '../assets/clavier.jpg';
+import { FiArrowUpRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
+import moi from '../assets/moi.webp';
 
-const textes = [
-  'Computer Scientist',
-  'Junior Developer',
-  'Web & Mobile Developer',
-  'Linux & C Enthusiast',
-  'Aspiring DevOps Engineer'
+const paragraphes = [
+  "Étudiant en Licence Informatique, spécialisé en génie logiciel, je construis des applications web et mobiles avec React, Django, Laravel et Flutter.",
+  "Ce qui me passionne vraiment, c'est ce qui se passe sous le capot : Linux, la programmation système en C, la gestion de la mémoire. J'aime comprendre comment les choses fonctionnent avant de les assembler.",
+  "Aujourd'hui, je me dirige vers le DevOps : automatiser, déployer et faire tourner des systèmes fiables, du code jusqu'à la production.",
 ];
 
 function Home() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % textes.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <section id="home" className="h-screen h-screen-safe bg-white flex flex-col justify-start pt-16 md:pt-24">
-      <div className="relative w-full h-full overflow-hidden">
+    <section id="home" className="min-h-screen flex items-center px-6 sm:px-10 pt-32 pb-20">
+      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-12 lg:gap-16 items-center">
+      <div className="order-2 lg:order-1">
+        <p className="surtitre flex items-center gap-3 text-petit text-texte mb-5">
+          <span className="h-[2px] w-8 bg-eclat" aria-hidden="true" />
+          Salut, je suis Abdoulaye Balde
+        </p>
 
-        <img src={clavier} alt="Clavier d'ordinateur en arrière-plan" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent" />
+        <h1 className="text-encre max-w-3xl text-hero font-medium tracking-tight mb-8 md:mb-10">
+          Un développeur logiciel{' '}
+          <span className="text-accent">passionné par Linux, le C et le web.</span>
+        </h1>
 
-        <div className="relative z-10 h-full flex items-center px-6 sm:px-10 md:px-20">
-          <div className="text-white border-l-4 border-white pl-4 sm:pl-6">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-wider sm:tracking-widest uppercase">
-              Abdoulaye <br />Balde
-            </h1>
-
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={index}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.5 }}
-                className="text-base sm:text-lg md:text-2xl tracking-widest uppercase mt-3 md:mt-4"
-              >
-                {textes[index]}
-              </motion.p>
-            </AnimatePresence>
-          </div>
-
-          <a
-            href="/cv.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="absolute bottom-8 right-4 sm:right-6 md:right-10 border-b-2 border-white text-white text-xs sm:text-sm tracking-widest uppercase hover:opacity-70 transition-all duration-300 active:opacity-50"
-          >
-            Voir mon CV →
-          </a>
+        <div className="max-w-2xl flex flex-col gap-5 text-texte text-corps">
+          {paragraphes.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
         </div>
 
+        <Link
+          to="/#contact"
+          className="lien-souligne mt-10"
+        >
+          Contactez-moi <FiArrowUpRight />
+        </Link>
+      </div>
+
+      <figure
+        className="order-1 lg:order-2 relative w-40 sm:w-52 lg:w-full select-none"
+        onContextMenu={(e) => e.preventDefault()}
+      >
+        <div className="absolute inset-0 translate-x-3 translate-y-3 lg:translate-x-5 lg:translate-y-5 border-2 border-eclat" aria-hidden="true" />
+        <img
+          src={moi}
+          alt="Portrait d'Abdoulaye Balde"
+          width="640"
+          height="800"
+          fetchPriority="high"
+          draggable="false"
+          className="relative w-full aspect-[4/5] object-cover pointer-events-none"
+        />
+        <div className="absolute inset-0" aria-hidden="true" />
+      </figure>
       </div>
     </section>
   );
